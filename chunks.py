@@ -9,9 +9,20 @@ def create_chunks(
         documents_path,
         max_tokens,
         separate_chunk_method,
-        separator,
+        separator='/n',
         silent=True
 ):
+    """
+    Create chinks from documents. Can process all documents in folder.
+
+    :param semantic_tokenizer: for example use 'bert-base-uncased'
+    :param documents_path: path with all documents for creating chunks
+    :param max_tokens: max tokens for semantic separation
+    :param separate_chunk_method: can be '' for semantic separation or 'separator'
+    :param separator: separator for separate_chunk_method
+    :param silent: add log comments
+    :return: list of chunks
+    """
     # make chunks
     tokenizer = Tokenizer.from_pretrained(semantic_tokenizer)
     splitter = HuggingFaceTextSplitter(tokenizer, trim_chunks=False)
