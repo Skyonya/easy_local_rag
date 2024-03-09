@@ -1,0 +1,2 @@
+semantic_text_splitter==0.6.3
+tokenizers==0.15.2
