@@ -47,6 +47,7 @@ if __name__ == "__main__":
 
         bot_answer = get_model_answer(
             user_input=user_input,
+            model_name="mistral",
             relevant_document=relevant_document
         )
 

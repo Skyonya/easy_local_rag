@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def get_model_answer(user_input, relevant_document):
+def get_model_answer(user_input, model_name, relevant_document):
     # Ollama API
     # https://github.com/jmorganca/ollama/blob/main/docs/api.md
     prompt = """
@@ -14,7 +14,7 @@ def get_model_answer(user_input, relevant_document):
 
     url = 'http://localhost:11434/api/generate'
     data = {
-        "model": "mistral",
+        "model": model_name,
         "prompt": prompt.format(user_input=user_input, relevant_document=relevant_document)
     }
     headers = {'Content-Type': 'application/json'}
