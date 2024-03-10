@@ -8,7 +8,7 @@ persist_directory = 'vectorstore_db'
 
 if __name__ == "__main__":
 
-    if is_directory_empty(documents_path):
+    if is_directory_empty(persist_directory):
 
         # split documents
         docs = split_document(
