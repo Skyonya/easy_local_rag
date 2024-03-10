@@ -2,7 +2,12 @@ from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import CharacterTextSplitter
 
 
-def split_document(documents_path, chunk_size=1000, chunk_overlap=0, silent=True):
+def split_document(
+        documents_path,
+        chunk_size=1000,
+        chunk_overlap=0,
+        silent=True
+):
     # load the document
     loader = TextLoader(documents_path)
     documents = loader.load()
