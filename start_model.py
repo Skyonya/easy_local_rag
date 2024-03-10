@@ -1,15 +1,14 @@
 from split_docs_tools import split_document
 from vectorstore_tools import vectorstore_process
-
-import requests
-import json
-
+from model_answer import  get_model_answer
 
 if __name__ == "__main__":
 
     # split documents
     docs = split_document(
         documents_path='documents/hp1.txt',
+        chunk_size=2000,
+        chunk_overlap=100,
         silent=False
     )
 
@@ -25,43 +24,22 @@ if __name__ == "__main__":
 
     # =============================================
 
-    user_input = "What is Nearly Headless Nick’s real name?"
+    while True:
+        user_input = input("Q: ")
 
-    # similarity search from vector vectorstore_db
-    docs = db.similarity_search(user_input)
-    relevant_document = docs[0].page_content
-    # print results
-    print('-----------------')
-    print('relevant_document:')
-    print(relevant_document)
+        # similarity search from vector vectorstore_db
+        docs = db.similarity_search(user_input)
+        relevant_document = docs[0].page_content
+        # print results
+        print('-----------------')
+        print('relevant_document:')
+        print(relevant_document)
 
-    # Ollama API
-    # https://github.com/jmorganca/ollama/blob/main/docs/api.md
-    prompt = """
-    You are a bot that makes recommendations based on document. You answer in very short sentences and do not include extra information.
-    This is the recommended document: {relevant_document}
-    The user input is: {user_input}
-    Compile a recommendation to the user based on the recommended document and the user input.
-    """
+        bot_answer = get_model_answer(
+            user_input=user_input,
+            relevant_document=relevant_document
+        )
 
-    url = 'http://localhost:11434/api/generate'
-    data = {
-        "model": "mistral",
-        "prompt": prompt.format(user_input=user_input, relevant_document=relevant_document)
-    }
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(url, data=json.dumps(data), headers=headers, stream=True)
-    full_response = []
-    try:
-        count = 0
-        for line in response.iter_lines():
-            if line:
-                decoded_line = json.loads(line.decode('utf-8'))
-                full_response.append(decoded_line['response'])
-    finally:
-        response.close()
-
-    bot_answer = ''.join(full_response)
-    print('-----------------')
-    print(f'Q: {user_input}')
-    print(f'A: {bot_answer}')
+        print('-----------------')
+        print(f'Q: {user_input}')
+        print(f'A: {bot_answer}')
