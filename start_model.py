@@ -1,38 +1,22 @@
-from split_docs_tools import split_document
-from vectorstore_tools import load_vectorstore, create_vectorstore
 from model_answer import get_model_answer
-from tools import is_directory_empty
+from vectorstore_tools import get_vectorstore
 
 documents_path = 'documents/hp1.txt'
-persist_directory = 'vectorstore_db'
+db_path = 'vectorstore_db'
+silent = False  # enable or disable log comments
 
 if __name__ == "__main__":
 
-    if is_directory_empty(persist_directory, silent=False):
-
-        # split documents
-        docs = split_document(
-            documents_path=documents_path,
-            chunk_size=2000,
-            chunk_overlap=100,
-            silent=False
-        )
-
-        # create vector store db
-        db = create_vectorstore(
-            docs=docs,
-            embedding_model_name="all-MiniLM-L6-v2",
-            persist_directory='vectorstore_db',
-            silent=False
-        )
-
-    else:
-        # load vector store db
-        db = load_vectorstore(
-            embedding_model_name="all-MiniLM-L6-v2",
-            persist_directory='vectorstore_db',
-            silent=False
-        )
+    # chunk document and save vector db
+    # or load current vector db
+    db = get_vectorstore(
+        documents_path=documents_path,
+        embedding_model_name="all-MiniLM-L6-v2",
+        persist_directory='vectorstore_db',
+        chunk_size=2500,
+        chunk_overlap=500,
+        silent=silent
+    )
 
     # =============================================
 
@@ -40,12 +24,22 @@ if __name__ == "__main__":
         user_input = input("Q: ")
 
         # similarity search from vector vectorstore_db
-        docs = db.similarity_search(user_input)
-        relevant_document = docs[0].page_content
-        # print results
-        print('-----------------')
-        print('relevant_document:')
-        print(relevant_document)
+        # docs = db.similarity_search(user_input)
+        # relevant_document = docs[0].page_content
+
+        relevant_document, score = db.similarity_search_with_relevance_scores(user_input)[0]
+        relevant_document = relevant_document.page_content
+
+        if not silent:
+            print('score ', score)
+            if score < 0.4:
+                print('score is too low, trying to answer without docs')
+                relevant_document = None
+            else:
+                # print results
+                print('-----------------')
+                print('relevant_document:')
+                print(relevant_document)
 
         bot_answer = get_model_answer(
             user_input=user_input,
@@ -56,3 +50,4 @@ if __name__ == "__main__":
         print('-----------------')
         print(f'Q: {user_input}')
         print(f'A: {bot_answer}')
+        print('-----------------')
