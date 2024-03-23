@@ -8,7 +8,7 @@ persist_directory = 'vectorstore_db'
 
 if __name__ == "__main__":
 
-    if is_directory_empty(persist_directory):
+    if is_directory_empty(persist_directory, silent=False):
 
         # split documents
         docs = split_document(
@@ -18,6 +18,7 @@ if __name__ == "__main__":
             silent=False
         )
 
+        # create vector store db
         db = create_vectorstore(
             docs=docs,
             embedding_model_name="all-MiniLM-L6-v2",
@@ -26,6 +27,7 @@ if __name__ == "__main__":
         )
 
     else:
+        # load vector store db
         db = load_vectorstore(
             embedding_model_name="all-MiniLM-L6-v2",
             persist_directory='vectorstore_db',
