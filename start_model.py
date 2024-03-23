@@ -1,9 +1,13 @@
 from model_answer import get_model_answer
 from vectorstore_tools import get_vectorstore
 
-documents_path = 'documents/hp1.txt'
-db_path = 'vectorstore_db'
-silent = False  # enable or disable log comments
+# === settings ===
+documents_path = 'documents/hp1.txt'  # folder with documents for RAG
+db_path = 'vectorstore_db'  # folder for storing db
+model_name = "mistral"  # name of the model for 'ollama run'
+embedding_model_name = "all-MiniLM-L6-v2"  # name of the model for creating embedding from documents
+silent = True  # enable for log comments
+# ================
 
 if __name__ == "__main__":
 
@@ -11,8 +15,8 @@ if __name__ == "__main__":
     # or load current vector db
     db = get_vectorstore(
         documents_path=documents_path,
-        embedding_model_name="all-MiniLM-L6-v2",
-        persist_directory='vectorstore_db',
+        embedding_model_name=embedding_model_name,
+        persist_directory=db_path,
         chunk_size=1000,
         chunk_overlap=100,
         silent=silent
@@ -43,7 +47,7 @@ if __name__ == "__main__":
 
         bot_answer = get_model_answer(
             user_input=user_input,
-            model_name="mistral",
+            model_name=model_name,
             relevant_document=relevant_document
         )
 
