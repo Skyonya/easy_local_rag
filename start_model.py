@@ -13,8 +13,8 @@ if __name__ == "__main__":
         documents_path=documents_path,
         embedding_model_name="all-MiniLM-L6-v2",
         persist_directory='vectorstore_db',
-        chunk_size=2500,
-        chunk_overlap=500,
+        chunk_size=1000,
+        chunk_overlap=100,
         silent=silent
     )
 

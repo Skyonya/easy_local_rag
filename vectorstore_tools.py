@@ -44,7 +44,7 @@ def get_vectorstore(
         documents_path,
         embedding_model_name,
         persist_directory,
-        chunk_size=2000,
+        chunk_size=1000,
         chunk_overlap=100,
         silent=True
 ):

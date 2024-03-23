@@ -6,7 +6,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 def split_document(
         documents_path,
         chunk_size=1000,
-        chunk_overlap=0,
+        chunk_overlap=100,
         silent=True
 ):
     # load the document
