@@ -6,7 +6,7 @@ documents_path = 'documents/hp1.txt'  # folder with documents for RAG
 db_path = 'vectorstore_db'  # folder for storing db
 model_name = "mistral"  # name of the model for 'ollama run'
 embedding_model_name = "all-MiniLM-L6-v2"  # name of the model for creating embedding from documents
-silent = True  # enable for log comments
+silent = False  # enable or disable for log comments
 # ================
 
 if __name__ == "__main__":
