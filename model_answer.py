@@ -5,12 +5,19 @@ import json
 def get_model_answer(user_input, model_name, relevant_document):
     # Ollama API
     # https://github.com/jmorganca/ollama/blob/main/docs/api.md
-    prompt = """
-    You are a bot that makes recommendations based on document. You answer in very short sentences and do not include extra information.
-    This is the recommended document: {relevant_document}
-    The user input is: {user_input}
-    Compile a recommendation to the user based on the recommended document and the user input.
-    """
+    if relevant_document is None:
+        prompt = """
+        You are a bot that makes recommendations. You answer in very short sentences and do not include extra information.
+        The user input is: {user_input}
+        Compile a recommendation to the user based on the user input.
+        """
+    else:
+        prompt = """
+        You are a bot that makes recommendations based on document. You answer in very short sentences and do not include extra information.
+        This is the recommended document: {relevant_document}
+        The user input is: {user_input}
+        Compile a recommendation to the user based on the recommended document and the user input.
+        """
 
     url = 'http://localhost:11434/api/generate'
     data = {
