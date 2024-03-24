@@ -1,7 +1,7 @@
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
-from split_docs_tools import split_document
+from split_docs_tools import load_and_split_docs
 from tools import is_directory_empty, decorator_timer
 
 
@@ -50,8 +50,8 @@ def get_vectorstore(
 ):
     if is_directory_empty(persist_directory, silent=silent):
 
-        # split documents
-        docs = split_document(
+        # load and split documents
+        docs = load_and_split_docs(
             documents_path=documents_path,
             chunk_size=chunk_size,
             chunk_overlap=chunk_overlap,
