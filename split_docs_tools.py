@@ -29,7 +29,7 @@ def load_and_split_docs(
         silent=True
 ):
     documents = load_document(documents_path)
-    docs = split_document(documents, chunk_size, chunk_overlap, silent)
+    docs = split_document(documents, chunk_size, chunk_overlap)
     if not silent:
         print(f'Created {len(docs)} splits from {documents_path}')
     return docs
