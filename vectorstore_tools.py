@@ -58,7 +58,7 @@ def get_vectorstore(
             embedding_model_name=embedding_model_name,
             persist_directory=persist_directory,
         )
-        logging.info(f'Creating time', time)
+        logging.info(f'Creating time {time}')
 
     else:
         # load vector store db
@@ -66,5 +66,5 @@ def get_vectorstore(
             embedding_model_name=embedding_model_name,
             persist_directory=persist_directory,
         )
-        logging.info(f'Loading time', time)
+        logging.info(f'Loading time {time}')
     return db
