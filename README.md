@@ -45,12 +45,24 @@
 
 ##  Overview
 
+easy_local_rag is a Python project designed to create a local question-answer system with RAG (Retrieval Augmented Generation) and LLM (Large Language Model)
+
+document vectorization, similarity search, and model-based answer generation
+
 ---
 
 ##  Features
 
-- RAG (Retrieval Augmented Generation)
-- Semantic Search
+- **Document Processing**: Includes functions for loading and splitting documents into smaller chunks for efficient processing.
+
+
+- **Vector Store Management**: Facilitates the creation, loading, and access of a vector store using Chroma library and SentenceTransformer embeddings.
+
+
+- **Answer Generation with RAG (Retrieval Augmented Generation)**: Utilizes an external API (Ollama) to generate bot recommendations based on user input and relevant documents.
+
+
+- **Interactive Question-Answer Loop**: Allows users to input questions, performs similarity search against the document vector store, generates answers using the model, and provides responses to user queries.
 
 ---
 
@@ -138,7 +150,8 @@ python start_model.py
 - [X] `► Save and load embeddings to vector db`
 - [X] `► Semantic search in vector db`
 - [X] `► Generating answer with relevant document from db`
-- [ ] `► Advanced RAG`
+- [ ] `► Advanced RAG: Base knowledge`
+- [ ] `► Advanced RAG: Key words`
 
 ---
 
