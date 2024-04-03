@@ -12,7 +12,7 @@ def decorator_timer(some_function):
     return wrapper
 
 
-def is_directory_empty(directory, silent=True):
+def is_directory_empty(directory):
     if os.path.isdir(directory):
         if not os.listdir(directory):
             return True
