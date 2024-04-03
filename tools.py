@@ -4,6 +4,12 @@ import logging
 
 
 def decorator_timer(some_function):
+    """
+    This decorator function measures the execution time of another function.
+    It takes a function as input, executes it,
+    and returns both the result of the function and the time taken for execution.
+    Example: result, execution_time = some_function()
+    """
     def wrapper(*args, **kwargs):
         t1 = time()
         result = some_function(*args, **kwargs)
