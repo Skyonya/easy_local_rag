@@ -75,14 +75,13 @@
 
 <details closed><summary>Modules</summary>
 
-| File                                         | Summary |
-| ---                                          |---------|
-| [tools.py](tools.py)                         |         |
-| [model_answer.py](model_answer.py)           |         |
-| [vectorstore_tools.py](vectorstore_tools.py) |         |
-| [start_model.py](start_model.py)             |         |
-| [split_docs_tools.py](split_docs_tools.py)   |         |
-| [requirements.txt](requirements.txt)         |         |
+| File                                         | Summary                                                                                                                                                                                                                                            |
+| ---                                          |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [tools.py](tools.py)                         | The module provides a set of utility functions for common tasks related to file system operations and performance measurement.                                                                                                                     |
+| [model_answer.py](model_answer.py)           | Bot generating recommendations based on user input and relevant documents using the Ollama API. It constructs prompts based on the input parameters, sends requests to the API endpoint for text generation, and returns the generated bot answer. |
+| [vectorstore_tools.py](vectorstore_tools.py) | The module contains functions for creating, loading, and accessing a vector store using the Chroma library and SentenceTransformer embeddings. It provides utility functions to manage document embeddings and vector store persistence.           |
+| [start_model.py](start_model.py)             | The module serves as an entry point for initiating a question-answer system utilizing a document vector store and a model for generating answers. It provides settings for specifying document paths, model names, and embedding models, and it orchestrates the interaction between the vector store and the answer generation model.                                                                                                                                                                                                                                                   |
+| [split_docs_tools.py](split_docs_tools.py)   | The module provides functions for loading and splitting documents into smaller chunks. It utilizes text loaders and splitters from the LangChain community library to handle document processing efficiently.                                                                                                                                                                                                                                                   |
 
 </details>
 
