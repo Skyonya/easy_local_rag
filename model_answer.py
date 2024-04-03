@@ -28,7 +28,6 @@ def get_model_answer(user_input, model_name, relevant_document):
     response = requests.post(url, data=json.dumps(data), headers=headers, stream=True)
     full_response = []
     try:
-        count = 0
         for line in response.iter_lines():
             if line:
                 decoded_line = json.loads(line.decode('utf-8'))
