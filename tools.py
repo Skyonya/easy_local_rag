@@ -1,5 +1,6 @@
 import os
 from time import time
+import logging
 
 
 def decorator_timer(some_function):
@@ -16,10 +17,8 @@ def is_directory_empty(directory, silent=True):
         if not os.listdir(directory):
             return True
         else:
-            if not silent:
-                print('The directory does not empty')
+            logging.info('The directory is not empty')
             return False
     else:
-        if not silent:
-            print('The directory does not exist')
+        logging.info('The directory is not exist')
         return False
