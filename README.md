@@ -118,7 +118,7 @@ git clone https://github.com/skyonya/easy_local_rag/
 2. Change to the project directory:
 
 ```sh
-cd 
+cd easy_local_rag
 ```
 
 3. Install the dependencies:
