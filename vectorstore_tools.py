@@ -17,7 +17,10 @@ def create_vectorstore(
     # create the open-source embedding function
     embedding_function = SentenceTransformerEmbeddings(model_name=embedding_model_name)
     # load it into Chroma
-    db = Chroma.from_documents(documents=docs, embedding=embedding_function, persist_directory=persist_directory)
+    db = Chroma.from_documents(documents=docs,
+                               embedding=embedding_function,
+                               persist_directory=persist_directory,
+                               collection_metadata={"hnsw:space": "cosine"})
     db.persist()
     logging.info(f'Vector store was created and saved to folder: {persist_directory}')
     return db
