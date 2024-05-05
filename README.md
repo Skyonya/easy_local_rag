@@ -37,7 +37,6 @@
 > - [ Project Roadmap](#project-roadmap)
 > - [ Contributing](#contributing)
 > - [ License](#license)
-> - [ Acknowledgments](#acknowledgments)
 </details>
 
 ---
@@ -118,7 +117,7 @@ git clone https://github.com/skyonya/easy_local_rag/
 2. Change to the project directory:
 
 ```sh
-cd 
+cd easy_local_rag
 ```
 
 3. Install the dependencies:
@@ -150,8 +149,6 @@ python start_model.py
 - [X] `► Save and load embeddings to vector db`
 - [X] `► Semantic search in vector db`
 - [X] `► Generating answer with relevant document from db`
-- [ ] `► Advanced RAG: Base knowledge`
-- [ ] `► Advanced RAG: Key words`
 
 ---
 
@@ -197,10 +194,6 @@ Once your PR is reviewed and approved, it will be merged into the main branch.
 This project is protected under the [MIT](https://github.com/Skyonya/easy_local_rag/blob/main/LICENSE) License. For more details, refer to the [MIT](https://github.com/Skyonya/easy_local_rag/blob/main/LICENSE) file.
 
 ---
-
-##  Acknowledgments
-
-- 
 
 [**Return**](#quick-links)
 
