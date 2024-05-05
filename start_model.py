@@ -6,8 +6,8 @@ from vectorstore_tools import get_vectorstore
 # === settings ===
 documents_path = 'documents/1.txt'  # folder with documents for RAG
 db_path = 'vectorstore_db'  # folder for storing db
-model_name = "mistral"  # name of the model for 'ollama run'
-embedding_model_name = "all-MiniLM-L6-v2"  # name of the model for creating embedding from documents
+model_name = 'mistral'  # name of the model for 'ollama run'
+embedding_model_name = 'paraphrase-multilingual-mpnet-base-v2'  # name of the model for creating embedding from documents
 # logging.basicConfig(level=logging.INFO)  # logging
 # ================
 
